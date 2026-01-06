@@ -8,55 +8,59 @@
 </head>
 <body>
 
-    <div class="background-scenery"></div>
+    <div class="sky-background"></div>
 
     <div class="container">
         <h1>🏇 Großes Derby 🏇</h1>
         
         <div id="setup">
-            <p>Drücke eine Taste, um sie auszuwählen:</p>
-            <input type="text" id="keyInput" maxlength="1" placeholder="_" readonly>
-            <button id="startBtn" disabled>START</button>
+            <p>Klicke und wähle deine Taste:</p>
+            <div class="input-group">
+                <input type="text" id="keyInput" maxlength="1" placeholder="_" readonly>
+                <button id="startBtn" disabled>START</button>
+            </div>
         </div>
 
-        <h2 id="statusText">Wähle deine Taste!</h2>
+        <h2 id="statusText">Wähle eine Taste!</h2>
 
-        <div class="race-container">
-            <div class="finish-arch">FINISH</div>
+        <div class="race-track">
+            <div class="finish-post">
+                <div class="finish-sign">ZIEL</div>
+            </div>
 
             <div class="track-row">
-                <div class="racer-label player-label">
-                    <span>👤 DU</span>
+                <div class="racer-info">
+                    <span class="racer-name player-name">👤 DU</span>
                 </div>
                 <div class="lane">
-                    <img src="https://i.imgur.com/OA85F8H.gif" class="horse" id="horse-player" alt="Spieler Pferd">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/The_Horse_in_Motion.anim.gif" class="horse" id="horse-player">
                 </div>
             </div>
 
             <div class="track-row">
-                <div class="racer-label ai-label">
-                    <span>🤖 Gegner 1</span>
+                <div class="racer-info">
+                    <span class="racer-name">🤖 KI 1</span>
                 </div>
                 <div class="lane">
-                    <img src="https://i.imgur.com/OA85F8H.gif" class="horse ai-horse" id="horse-ai1" alt="KI 1 Pferd">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/The_Horse_in_Motion.anim.gif" class="horse ai-horse" id="horse-ai1">
                 </div>
             </div>
 
             <div class="track-row">
-                <div class="racer-label ai-label">
-                    <span>🤖 Gegner 2</span>
+                <div class="racer-info">
+                    <span class="racer-name">🤖 KI 2</span>
                 </div>
                 <div class="lane">
-                    <img src="https://i.imgur.com/OA85F8H.gif" class="horse ai-horse" id="horse-ai2" alt="KI 2 Pferd">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/The_Horse_in_Motion.anim.gif" class="horse ai-horse" id="horse-ai2">
                 </div>
             </div>
 
             <div class="track-row">
-                <div class="racer-label ai-label">
-                    <span>🤖 Gegner 3</span>
+                <div class="racer-info">
+                    <span class="racer-name">🤖 KI 3</span>
                 </div>
                 <div class="lane">
-                    <img src="https://i.imgur.com/OA85F8H.gif" class="horse ai-horse" id="horse-ai3" alt="KI 3 Pferd">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/The_Horse_in_Motion.anim.gif" class="horse ai-horse" id="horse-ai3">
                 </div>
             </div>
             
