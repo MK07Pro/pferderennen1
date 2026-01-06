@@ -31,7 +31,7 @@ let positions = { player: 0, ai1: 0, ai2: 0, ai3: 0 };
 let gameLoop = null;
 
 // ANPASSUNG: Ziel etwas früher, da die Pferde-Bilder breiter sind und der Bogen Platz braucht
-const FINISH_LINE = 86; 
+const FINISH_LINE = 88; 
 
 // ===============================
 // 1. Taste auswählen
@@ -219,4 +219,5 @@ function resetGame() {
     // Statusfarbe zurücksetzen
     statusText.style.color = "#d9534f";
 }
+
 
