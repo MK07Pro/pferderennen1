@@ -1,42 +1,84 @@
 <!DOCTYPE html>
+<!-- Deklariert das Dokument als HTML5 -->
 <html lang="de">
+<!-- Sprache des Dokuments: Deutsch -->
+
 <head>
+    <!-- Zeichencodierung (Umlaute, Emojis etc.) -->
     <meta charset="UTF-8">
+
+    <!-- Sorgt für korrektes Skalieren auf mobilen Geräten -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Titel der Webseite (Browser-Tab) -->
     <title>Jahrmarkt Pferderennen</title>
+
+    <!-- Einbindung der externen CSS-Datei -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+    <!-- Hauptcontainer für das gesamte Spiel -->
     <div class="container">
+
+        <!-- Überschrift des Spiels -->
         <h1>🎪 Jahrmarkt Pferderennen 🎪</h1>
         
+        <!-- Setup-Bereich für Tastenauswahl und Spielstart -->
         <div id="setup">
+
+            <!-- Beschriftung für die Tastenauswahl -->
             <label>Wähle deine Taste (klicke hier und drücke eine Taste):</label>
+
+            <!-- 
+                Eingabefeld zur Anzeige der gewählten Taste
+                readonly: verhindert manuelle Eingabe
+                maxlength="1": nur ein Zeichen anzeigen
+            -->
             <input type="text" id="keyInput" maxlength="1" placeholder="z.B. Leertaste" readonly>
+
+            <!-- 
+                Start-Button
+                disabled: wird erst aktiviert, wenn eine Taste gewählt wurde
+            -->
             <button id="startBtn" disabled>START DRÜCKEN</button>
         </div>
 
+        <!-- Statusanzeige für Hinweise, Countdown, Sieg/Niederlage -->
         <h2 id="statusText">Wähle eine Taste zum Starten!</h2>
 
+        <!-- Rennstrecke -->
         <div class="track">
+
+            <!-- Spur für den Spieler -->
             <div class="lane" id="lane-player">
+                <!-- Spieler-Pferd -->
                 <span class="horse" id="horse-player">🐎 (DU)</span>
             </div>
+
+            <!-- Spur für KI 1 -->
             <div class="lane">
                 <span class="horse" id="horse-ai1">🦓 (KI 1)</span>
             </div>
+
+            <!-- Spur für KI 2 -->
             <div class="lane">
                 <span class="horse" id="horse-ai2">🐂 (KI 2)</span>
             </div>
+
+            <!-- Spur für KI 3 -->
             <div class="lane">
                 <span class="horse" id="horse-ai3">🐫 (KI 3)</span>
             </div>
             
+            <!-- Ziellinie am Ende der Rennstrecke -->
             <div class="finish-line"></div>
         </div>
     </div>
 
+    <!-- Einbindung der JavaScript-Spiel-Logik -->
     <script src="game.js"></script>
 </body>
+
 </html>
