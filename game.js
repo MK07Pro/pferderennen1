@@ -34,9 +34,9 @@ let currentBet = 0;
 // Konstanten
 const FINISH_LINE = 88;
 const SPEEDS = {
-    easy: 0.8,   // Langsamer
-    medium: 1.2, // Normal
-    hard: 1.7    // Schnell
+    easy: 0.5,   // Langsamer
+    medium: 0.9, // Normal
+    hard: 1.4    // Schnell
 };
 
 // --- SETUP LOGIK ---
@@ -186,9 +186,9 @@ function moveAI(element, id, diffMultiplier) {
     
     // Name für KI ermitteln
     let name = "KI";
-    if (id === 'lane2') name = "KI 1";
-    if (id === 'ai2') name = "KI 2";
-    if (id === 'ai3') name = "KI 3";
+    if (id === 'lane2') name = "Jona";
+    if (id === 'ai2') name = "Joey";
+    if (id === 'ai3') name = "Maurice";
 
     checkWin(name);
 }
@@ -262,3 +262,4 @@ function resetGame() {
     updatePosition(aiHorses[1], 0);
     statusText.style.color = "#e74c3c";
 }
+
