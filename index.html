@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jahrmarkt Pferderennen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎪 Jahrmarkt Pferderennen 🎪</h1>
+        
+        <div id="setup">
+            <label>Wähle deine Taste (klicke hier und drücke eine Taste):</label>
+            <input type="text" id="keyInput" maxlength="1" placeholder="z.B. Leertaste" readonly>
+            <button id="startBtn" disabled>START DRÜCKEN</button>
+        </div>
+
+        <h2 id="statusText">Wähle eine Taste zum Starten!</h2>
+
+        <div class="track">
+            <div class="lane" id="lane-player">
+                <span class="horse" id="horse-player">🐎 (DU)</span>
+            </div>
+            <div class="lane">
+                <span class="horse" id="horse-ai1">🦓 (KI 1)</span>
+            </div>
+            <div class="lane">
+                <span class="horse" id="horse-ai2">🐂 (KI 2)</span>
+            </div>
+            <div class="lane">
+                <span class="horse" id="horse-ai3">🐫 (KI 3)</span>
+            </div>
+            
+            <div class="finish-line"></div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

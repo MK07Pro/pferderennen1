@@ -1,0 +1,93 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#setup {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+#keyInput {
+    font-size: 20px;
+    text-align: center;
+    width: 150px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#startBtn {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#startBtn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#statusText {
+    color: #d9534f;
+    font-size: 32px;
+    min-height: 40px;
+}
+
+/* Rennbahn Design */
+.track {
+    position: relative;
+    background-color: #8b4513; /* Erdboden Farbe */
+    padding: 10px 0;
+    border-radius: 10px;
+    border: 5px solid #5a2d0c;
+    overflow: hidden;
+}
+
+.lane {
+    position: relative;
+    height: 60px;
+    border-bottom: 2px dashed #ffffff80;
+    width: 100%;
+}
+
+.lane:last-child {
+    border-bottom: none;
+}
+
+.horse {
+    position: absolute;
+    left: 0; /* Startposition */
+    top: 10px;
+    font-size: 40px;
+    transition: left 0.1s linear; /* Flüssige Bewegung */
+}
+
+.finish-line {
+    position: absolute;
+    right: 50px;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background-image: repeating-linear-gradient(
+        0deg,
+        black,
+        black 10px,
+        white 10px,
+        white 20px
+    );
+    z-index: 0;
+}
