@@ -1,219 +1,134 @@
-/* --- 1. Grundlayout & Umgebung --- */
+/* --- Alles Vorherige bleibt, hier sind die Updates --- */
+
+/* 1. Grundlayout & Umgebung */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 20px;
     text-align: center;
     color: #333;
-    overflow-x: hidden; /* Verhindert seitliches Scrollen */
+    overflow-x: hidden;
     min-height: 100vh;
-    display: flex; /* Zentriert das Spiel vertikal */
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Der blaue Himmel im Hintergrund (oben) */
 .sky-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60%;
+    position: fixed; top: 0; left: 0; width: 100%; height: 60%;
     background: linear-gradient(to bottom, #87CEEB 0%, #E0F7FA 100%);
     z-index: -2;
 }
 
-/* Der grüne Boden im Hintergrund (unten) */
 body::after {
-    content: '';
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40%;
-    background-color: #4C9A2A;
-    z-index: -2;
+    content: ''; position: fixed; bottom: 0; left: 0; width: 100%; height: 40%;
+    background-color: #4C9A2A; z-index: -2;
 }
 
-/* Der weiße Spiel-Container */
 .container {
     background: rgba(255, 255, 255, 0.95);
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
     max-width: 950px;
-    width: 95%; /* Damit es auf Handys nicht platzt */
-    margin-top: 20px;
+    width: 95%;
+    margin-top: 10px;
 }
 
-h1 { margin-top: 0; color: #2c3e50; font-size: 2.5em; text-transform: uppercase; letter-spacing: 2px; }
+h1 { margin-top: 0; color: #2c3e50; font-size: 2.2em; text-transform: uppercase; margin-bottom: 10px; }
 
-/* --- 2. Setup & Buttons --- */
+/* --- 2. Setup (Neu gestaltet) --- */
 #setup {
     background: #f1f2f6;
     padding: 15px;
     border-radius: 8px;
-    display: inline-block;
     border: 1px solid #dcdde1;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-.input-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
+.setup-row {
+    display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-bottom: 10px;
 }
 
-#keyInput {
-    font-size: 22px;
-    text-align: center;
-    width: 50px;
-    padding: 5px;
-    border: 2px solid #bdc3c7;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
+.setup-group label { font-weight: bold; margin-right: 10px; }
+#difficultySelect { padding: 5px; border-radius: 4px; border: 1px solid #ccc; font-size: 16px; }
+
+.keys-container {
+    display: flex; justify-content: center; gap: 30px; margin: 15px 0;
+}
+
+.key-box {
+    font-size: 20px; text-align: center; width: 50px; padding: 5px;
+    border: 2px solid #bdc3c7; border-radius: 5px;
+    font-weight: bold; text-transform: uppercase; cursor: pointer;
+    background: white;
 }
 
 #startBtn {
-    padding: 8px 25px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #27ae60;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
+    padding: 10px 40px; font-size: 20px; font-weight: bold;
+    background-color: #27ae60; color: white; border: none;
+    border-radius: 5px; cursor: pointer; margin-top: 5px;
+    width: 100%; max-width: 300px;
 }
-
-#startBtn:hover:not(:disabled) { background-color: #2ecc71; transform: scale(1.05); }
 #startBtn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
 
-#statusText {
-    font-size: 26px;
-    color: #e74c3c;
-    min-height: 40px;
-    margin-bottom: 20px;
-    font-weight: 800;
-}
+#statusText { font-size: 24px; color: #e74c3c; min-height: 30px; margin-bottom: 15px; font-weight: 800; }
 
-/* --- 3. Die Rennbahn (Das Herzstück) --- */
+/* --- 3. Rennbahn --- */
 .race-track {
     position: relative;
-    background-color: #56ab2f; /* Rasen Grün */
-    /* Erzeugt ein Streifenmuster wie im Stadion */
-    background-image: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 50px,
-        rgba(255,255,255,0.1) 50px,
-        rgba(255,255,255,0.1) 100px
-    );
-    border: 8px solid #fff; /* Dicker weißer Stadion-Rand */
+    background-color: #56ab2f;
+    background-image: repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,255,255,0.1) 50px, rgba(255,255,255,0.1) 100px);
+    border: 8px solid #fff;
     border-radius: 6px;
     box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
-    overflow: hidden; /* Wichtig! */
-    margin-top: 10px;
+    overflow: hidden;
+    padding-bottom: 0; /* Platz für HUD intern */
 }
 
-/* Eine einzelne Reihe (Name + Bahn) */
-.track-row {
-    display: flex; /* Legt Name und Bahn nebeneinander */
-    align-items: center;
-    height: 80px; /* Höhe einer Bahn */
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Weiße Linie zwischen Bahnen */
-    position: relative;
-}
-
-.track-row:last-child { border-bottom: none; }
-
-/* Linker Bereich: Name & Info */
-.racer-info {
-    width: 110px; /* Feste Breite für die linke Spalte */
-    background: rgba(0, 0, 0, 0.25); /* Dunkler Hintergrund für Lesbarkeit */
-    height: 100%;
+/* --- HUD (Wetten & Score) UNTEN --- */
+.hud-dashboard {
     display: flex;
-    align-items: center;
-    justify-content: flex-end; /* Text rechtsbündig */
-    padding-right: 15px;
-    flex-shrink: 0; /* Darf nicht kleiner werden */
-    box-sizing: border-box;
-    border-right: 2px solid rgba(255,255,255,0.3);
-    z-index: 5; /* Über dem Pferd, falls es zurückläuft */
+    justify-content: space-between;
+    padding: 15px;
+    background: rgba(0,0,0,0.1); /* Dunklerer Rasenbereich */
+    border-top: 2px solid rgba(255,255,255,0.3);
+    margin-top: 20px; /* Abstand zur letzten Bahn */
 }
 
-.racer-name {
+.hud-box {
+    background: rgba(0, 0, 0, 0.7); /* GTA Style Box */
     color: white;
-    font-weight: bold;
-    font-size: 14px;
-    text-shadow: 1px 1px 3px black;
+    padding: 15px;
+    border-radius: 5px;
+    width: 45%;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.player-name {
-    color: #f1c40f; /* Goldene Schrift für den Spieler */
-    font-size: 16px;
-    text-transform: uppercase;
-}
+.hud-box h3 { margin: 0 0 10px 0; color: #f1c40f; border-bottom: 1px solid #555; padding-bottom: 5px; font-size: 16px; }
 
-/* Rechter Bereich: Die Laufbahn */
-.lane {
-    flex-grow: 1; /* Nimmt den restlichen Platz ein */
-    height: 100%;
-    position: relative;
-}
+/* Wetten */
+.balance-display { font-size: 20px; margin-bottom: 10px; font-weight: bold; color: #2ecc71; }
+.bet-controls input { width: 70px; padding: 5px; font-size: 16px; border-radius: 3px; border: none; }
 
-/* --- 4. Die Akteure (Pferde) --- */
-.horse {
-    position: absolute;
-    left: 0;
-    bottom: 5px; /* Steht auf dem Boden der Linie */
-    height: 65px; /* Größe des GIFs */
-    width: auto;
-    transition: left 0.1s linear; /* Flüssige Bewegung */
-    z-index: 10;
-    
-    /* WICHTIG: Macht den weißen Hintergrund von GIFs transparent! */
-    mix-blend-mode: multiply; 
-    filter: contrast(1.1); /* Lässt Farben kräftiger wirken */
-}
+/* Scoreboard */
+#scoreList { list-style: none; padding: 0; margin: 0; max-height: 80px; overflow-y: auto; font-size: 14px; }
+#scoreList li { padding: 3px 0; border-bottom: 1px solid #444; }
+.win-text { color: #2ecc71; font-weight: bold; }
+.loss-text { color: #e74c3c; }
 
-.ai-horse {
-    /* Optional: KI Pferde etwas verändern, damit man sie unterscheidet */
-    filter: contrast(1.1) hue-rotate(20deg); 
-}
+/* --- Bahnen & Pferde (Wie vorher) --- */
+.track-row { display: flex; align-items: center; height: 70px; border-bottom: 2px solid rgba(255, 255, 255, 0.5); position: relative; }
+.track-row:last-of-type { border-bottom: none; } /* Letzte Bahn keine Linie, aber HUD kommt danach */
 
-/* --- 5. Zielbereich --- */
-.finish-post {
-    position: absolute;
-    right: 80px; /* Muss zum JavaScript FINISH_LINE passen */
-    top: 0;
-    bottom: 0;
-    width: 10px;
-    background: repeating-linear-gradient(
-        0deg,
-        #c0392b,
-        #c0392b 10px,
-        #ecf0f1 10px,
-        #ecf0f1 20px
-    );
-    z-index: 1; /* Hinter den Pferden */
-    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-}
+.racer-info { width: 110px; background: rgba(0,0,0,0.25); height: 100%; display: flex; align-items: center; justify-content: flex-end; padding-right: 15px; flex-shrink: 0; border-right: 2px solid rgba(255,255,255,0.3); z-index: 5; }
+.racer-name { color: white; font-weight: bold; font-size: 14px; text-shadow: 1px 1px 3px black; }
+.player-name { color: #f1c40f; font-size: 16px; }
+.lane { flex-grow: 1; height: 100%; position: relative; }
+.horse { position: absolute; left: 0; bottom: 5px; height: 55px; width: auto; transition: left 0.1s linear; z-index: 10; mix-blend-mode: multiply; filter: contrast(1.1); }
+.ai-horse { filter: contrast(1.1) hue-rotate(20deg); }
 
-.finish-sign {
-    position: absolute;
-    top: 5px; /* Klebt oben am Rand */
-    left: 50%;
-    transform: translateX(-50%);
-    background: #c0392b;
-    color: white;
-    padding: 3px 8px;
-    font-size: 10px;
-    font-weight: bold;
-    border-radius: 4px;
-    border: 1px solid white;
-    white-space: nowrap;
-}
+/* Ziel */
+.finish-post { position: absolute; right: 80px; top: 0; height: 100%; width: 10px; background: repeating-linear-gradient(0deg, #c0392b, #c0392b 10px, #ecf0f1 10px, #ecf0f1 20px); z-index: 1; }
+.finish-sign { position: absolute; top: 5px; left: 50%; transform: translateX(-50%); background: #c0392b; color: white; padding: 3px 8px; font-size: 10px; font-weight: bold; border-radius: 4px; border: 1px solid white; }
