@@ -25,20 +25,13 @@ const aiHorses = [
 // Spielvariablen
 // ===============================
 
-// Die vom Spieler gewählte Taste (z.B. "Space", "KeyA")
 let selectedKey = null;
-
-// Gibt an, ob das Spiel aktuell läuft
 let gameRunning = false;
-
-// Positionen aller Teilnehmer in Prozent
 let positions = { player: 0, ai1: 0, ai2: 0, ai3: 0 };
-
-// Referenz auf den KI-Intervall-Timer
 let gameLoop = null;
 
-// Ziellinie bei 90% der Breite, damit Pferde im Bild bleiben
-const FINISH_LINE = 90;
+// ANPASSUNG: Ziel etwas früher, da die Pferde-Bilder breiter sind und der Bogen Platz braucht
+const FINISH_LINE = 86; 
 
 // ===============================
 // 1. Taste auswählen
@@ -226,3 +219,4 @@ function resetGame() {
     // Statusfarbe zurücksetzen
     statusText.style.color = "#d9534f";
 }
+
