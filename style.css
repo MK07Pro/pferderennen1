@@ -1,161 +1,150 @@
-/* --- Grundlayout & Hintergrund --- */
+/* Grundlayout */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 20px;
     text-align: center;
     color: #333;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow-x: hidden;
 }
 
-/* Das Landschaftsbild im Hintergrund (feststehend) */
-.background-scenery {
+/* Himmel Hintergrund */
+.sky-background {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    /* Beispielbild für eine Landschaft */
-    background-image: url('https://images.unsplash.com/photo-1605428616976-945545505211?q=80&w=2070&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center bottom;
-    filter: blur(2px); /* Leichter Weichzeichner für Fokus auf das Spiel */
+    top: 0; left: 0; width: 100%; height: 50%;
+    background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
+    z-index: -2;
+}
+
+/* Gras Hintergrund unten */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0; left: 0; width: 100%; height: 50%;
+    background-color: #4C9A2A;
+    z-index: -2;
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.9); /* Halbtransparenter weißer Kasten */
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    max-width: 900px;
-    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    max-width: 950px;
+    margin: 0 auto;
 }
 
-h1 { margin-top: 0; color: #2c3e50; }
-
-/* --- Setup Bereich --- */
+/* Setup Bereich */
 #setup {
-    background: #eef2f7;
-    padding: 15px;
+    background: #f0f0f0;
+    padding: 10px;
     border-radius: 8px;
     display: inline-block;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-#keyInput {
-    font-size: 24px;
-    text-align: center;
-    width: 60px;
-    padding: 5px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-}
+.input-group { display: flex; align-items: center; justify-content: center; gap: 10px; }
+#keyInput { font-size: 20px; text-align: center; width: 50px; padding: 5px; font-weight: bold; text-transform: uppercase; }
+#startBtn { padding: 8px 20px; font-size: 16px; background-color: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; }
+#startBtn:disabled { background-color: #ccc; cursor: not-allowed; }
 
-#startBtn {
-    padding: 10px 25px;
-    font-size: 18px;
-    background-color: #27ae60;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    margin-left: 10px;
-}
+#statusText { font-size: 24px; color: #c0392b; height: 30px; margin: 10px 0 20px 0; }
 
-#startBtn:disabled { background-color: #95a5a6; cursor: not-allowed; }
-#startBtn:hover:not(:disabled) { background-color: #219150; }
-#statusText { font-size: 28px; color: #c0392b; min-height: 40px; margin-bottom: 30px; }
-
-/* --- Rennbahn Design (Neu) --- */
-.race-container {
+/* --- Die Rennbahn (GTA Style) --- */
+.race-track {
     position: relative;
-    /* Gras-Textur für den Boden */
-    background-image: url('https://www.transparenttextures.com/patterns/grass.png');
-    background-color: #4a8f3a;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
-    padding: 10px 0;
-    border-top: 8px solid #fff; /* Weißer Zaun oben */
-    border-bottom: 8px solid #fff; /* Weißer Zaun unten */
+    background-color: #56ab2f; /* Helles Gras */
+    background-image: repeating-linear-gradient(
+        90deg, 
+        transparent, 
+        transparent 50px, 
+        rgba(0,0,0,0.05) 50px, 
+        rgba(0,0,0,0.05) 100px
+    ); /* Leichte Streifen im Rasen */
+    border: 8px solid #fff; /* Dicker weißer Rand wie im Bild */
+    border-radius: 5px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+    overflow: hidden; /* Wichtig damit nichts rausragt */
 }
 
-/* Eine komplette Reihe (Name + Bahn) */
 .track-row {
-    display: flex; /* Macht, dass Name und Bahn nebeneinander stehen */
+    display: flex;
     align-items: center;
-    border-bottom: 2px solid rgba(255,255,255,0.5); /* Helle Trennlinien */
-    height: 80px; /* Etwas höher für die Bilder */
+    height: 70px; /* Höhe pro Bahn */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.6); /* Weiße Linien zwischen Bahnen */
+    position: relative;
 }
-
 .track-row:last-child { border-bottom: none; }
 
-/* Das Namensschild links */
-.racer-label {
-    width: 120px; /* Feste Breite für die Namen */
-    flex-shrink: 0; /* Darf nicht schrumpfen */
-    font-weight: bold;
-    color: white;
-    text-align: right;
-    padding-right: 15px;
-    font-size: 14px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-}
-.player-label { color: #ffd700; } /* Goldene Farbe für den Spieler */
-
-/* Die eigentliche Laufbahn rechts */
-.lane {
-    position: relative;
-    flex-grow: 1; /* Nimmt den restlichen Platz ein */
+/* Info Box Links */
+.racer-info {
+    width: 100px;
+    background: rgba(0,0,0,0.3);
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 15px;
+    z-index: 5;
 }
 
-/* Das Pferd (jetzt ein Bild) */
+.racer-name { color: white; font-weight: bold; font-size: 14px; text-shadow: 1px 1px 2px black; }
+.player-name { color: #ffd700; font-size: 16px; }
+
+/* Die Spur */
+.lane {
+    flex-grow: 1;
+    height: 100%;
+    position: relative;
+}
+
+/* Das PFERD */
 .horse {
     position: absolute;
     left: 0;
-    bottom: 5px; /* Auf dem Boden der Bahn */
-    height: 60px; /* Größe des GIFs anpassen */
+    bottom: 5px;
+    height: 55px; /* Größe anpassen */
     width: auto;
     transition: left 0.1s linear;
-    z-index: 2;
-}
-
-/* KI Pferde etwas dunkler machen, um sie zu unterscheiden (optional) */
-.ai-horse {
-    filter: brightness(0.8) sepia(0.2);
-}
-
-/* --- Ziellinie und Bogen --- */
-.finish-arch {
-    position: absolute;
-    right: 70px; /* Position der Ziellinie (muss mit JS FINISH_LINE übereinstimmen) */
-    top: -20px;
-    height: 100%;
-    width: 20px;
-    z-index: 1;
-    /* Simulierter Bogen mit CSS */
-    border-right: 5px solid #c0392b;
-    border-left: 5px solid #c0392b;
-    background: repeating-linear-gradient(45deg, #fff, #fff 10px, #333 10px, #333 20px);
     
-    /* Text "FINISH" oben drauf */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    color: white;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px black;
-    padding-top: 5px;
+    /* MAGIE: Macht den weißen Hintergrund des Bildes unsichtbar */
+    mix-blend-mode: multiply; 
+    filter: contrast(1.2);
 }
 
-/* Damit der Bogen über die Zäune ragt */
-.race-container { overflow: visible; }
+.ai-horse {
+    /* KI Pferde leicht verfärben/abdunkeln */
+    filter: contrast(1.2) sepia(0.5) hue-rotate(180deg); 
+    opacity: 0.9;
+}
+
+/* --- ZIELPFOSTEN (Rote Linie) --- */
+.finish-post {
+    position: absolute;
+    right: 80px; /* Position von rechts */
+    top: 0; bottom: 0;
+    width: 8px;
+    background: repeating-linear-gradient(
+        0deg, 
+        #c0392b, 
+        #c0392b 10px, 
+        #ecf0f1 10px, 
+        #ecf0f1 20px
+    );
+    z-index: 1;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+}
+
+.finish-sign {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #c0392b;
+    color: white;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 2px solid white;
+}
