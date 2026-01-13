@@ -1,139 +1,122 @@
 <!DOCTYPE html>
-<html lang="de"> <!-- Dokumentensprache: Deutsch -->
+<html lang="de">
 <head>
-    <meta charset="UTF-8"> <!-- UTF‑8 Zeichensatz -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsives Layout -->
-    <title>Jahrmarkt Pferderennen Deluxe</title> <!-- Titel im Browser-Tab -->
-    <link rel="stylesheet" href="style.css"> <!-- Einbindung der CSS-Datei -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jahrmarkt Pferderennen Deluxe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="sky-background"></div> <!-- Hintergrundgrafik (Himmel) -->
-
-    <div class="container"> <!-- Hauptcontainer für das gesamte Layout -->
-        <h1>🏇 Großes Derby 🏇</h1> <!-- Titel des Spiels -->
+    <div class="container">
+        <h1>🏇 Großes Derby 🏇</h1>
         
-        <div id="setup"> <!-- Setup-Bereich für Einstellungen -->
-            <div class="setup-row"> <!-- Zeile mit zwei Setup-Gruppen -->
-                <div class="setup-group"> <!-- Auswahl der Schwierigkeit -->
+        <div id="setup">
+            <div class="setup-row">
+                <div class="setup-group">
                     <label>Schwierigkeit:</label>
-                    <select id="difficultySelect"> <!-- Dropdown für KI-Schwierigkeit -->
+                    <select id="difficultySelect">
                         <option value="easy">Leicht 🟢</option>
                         <option value="medium" selected>Mittel 🟡</option>
                         <option value="hard">Schwer 🔴</option>
                     </select>
                 </div>
 
-                <div class="setup-group"> <!-- Multiplayer-Umschalter -->
+                <div class="setup-group">
                     <label>Modus:</label>
                     <div class="toggle-wrapper">
-                        <input type="checkbox" id="multiplayerToggle"> <!-- Checkbox für 2-Spieler-Modus -->
+                        <input type="checkbox" id="multiplayerToggle">
                         <label for="multiplayerToggle" class="toggle-label">2 Spieler (Lokal)</label>
                     </div>
                 </div>
             </div>
 
-            <hr> <!-- Trennlinie -->
+            <hr>
 
-            <div class="keys-container"> <!-- Bereich für Tastenwahl -->
-                <div class="key-group"> <!-- Taste für Spieler 1 -->
+            <div class="keys-container">
+                <div class="key-group">
                     <p>Spieler 1 Taste:</p>
                     <input type="text" id="keyInput1" maxlength="1" placeholder="_" readonly class="key-box">
-                    <!-- readonly: Eingabe nur über Tastendruck -->
                 </div>
                 
-                <div class="key-group" id="p2-setup" style="display: none;"> <!-- Taste für Spieler 2 (nur sichtbar im MP) -->
+                <div class="key-group" id="p2-setup" style="display: none;">
                     <p>Spieler 2 Taste:</p>
                     <input type="text" id="keyInput2" maxlength="1" placeholder="_" readonly class="key-box">
                 </div>
             </div>
 
-            <button id="startBtn" disabled>RENNEN STARTEN</button> <!-- Startbutton, erst aktiv wenn Tasten gewählt -->
+            <button id="startBtn" disabled>RENNEN STARTEN</button>
         </div>
 
-        <h2 id="statusText">Konfiguriere das Spiel...</h2> <!-- Statusanzeige (z.B. Countdown, Gewinner) -->
+        <h2 id="statusText">Konfiguriere das Spiel...</h2>
 
-        <div class="race-track"> <!-- Rennbahn -->
-            <div class="finish-post"> <!-- Zielpfosten -->
-                <div class="finish-sign">ZIEL</div> <!-- Ziel-Schild -->
+        <div class="race-track">
+            <div class="finish-post">
+                <div class="finish-sign">ZIEL</div>
             </div>
 
-            <!-- Spur 1: Spieler 1 -->
-            <div class="track-row"> <!-- Eine Rennspur -->
-                <div class="racer-info"> <!-- Info links -->
-                    <span class="racer-name player-name">👤 P1 (DU)</span>
-                </div>
-                <div class="lane"> <!-- Bahn -->
-                    <img src="pferd.gif" class="horse" id="horse-p1"
-                         onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐎</text></svg>'">
-                    <!-- Fallback: Wenn pferd.gif fehlt, wird ein Emoji-Pferd angezeigt -->
-                </div>
-            </div>
-
-            <!-- Spur 2: KI oder Spieler 2 -->
             <div class="track-row">
                 <div class="racer-info">
-                    <span class="racer-name" id="label-lane2">🤖 P2 (KI)</span> <!-- Label wird dynamisch geändert -->
+                    <span class="racer-name player-name">👤 P1 (DU)</span>
                 </div>
                 <div class="lane">
-                    <img src="pferd.gif" class="horse ai-horse" id="horse-lane2"
-                         onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦓</text></svg>'">
-                    <!-- Fallback: Zebra -->
+                    <img src="pferd.gif" class="horse" id="horse-p1" alt="Pferd P1">
                 </div>
             </div>
 
-            <!-- Spur 3: KI 2 -->
+            <div class="track-row">
+                <div class="racer-info">
+                    <span class="racer-name" id="label-lane2">🤖 P2 (KI)</span>
+                </div>
+                <div class="lane">
+                    <img src="pferd.gif" class="horse ai-horse" id="horse-lane2" alt="Pferd Spur 2">
+                </div>
+            </div>
+
             <div class="track-row">
                 <div class="racer-info">
                     <span class="racer-name">🤖 P3 (KI)</span>
                 </div>
                 <div class="lane">
-                    <img src="pferd.gif" class="horse ai-horse" id="horse-ai2"
-                         onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐂</text></svg>'">
-                    <!-- Fallback: Stier -->
+                    <img src="pferd.gif" class="horse ai-horse" id="horse-ai2" alt="Pferd KI 2">
                 </div>
             </div>
 
-            <!-- Spur 4: KI 3 -->
             <div class="track-row">
                 <div class="racer-info">
                     <span class="racer-name">🤖 P4 (KI)</span>
                 </div>
                 <div class="lane">
-                    <img src="pferd.gif" class="horse ai-horse" id="horse-ai3"
-                         onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐪</text></svg>'">
-                    <!-- Fallback: Kamel -->
+                    <img src="pferd.gif" class="horse ai-horse" id="horse-ai3" alt="Pferd KI 3">
                 </div>
             </div>
             
-            <div class="hud-dashboard"> <!-- HUD rechts: Wetten + Scoreboard -->
+            <div class="hud-dashboard">
                 
-                <!-- Wettbüro -->
                 <div class="hud-box betting-box">
                     <h3>💰 WETT-BÜRO</h3>
                     <div class="balance-display">
-                        Guthaben: <span id="moneyDisplay">1000</span> $ <!-- Geldanzeige -->
+                        Guthaben: <span id="moneyDisplay">1000</span> $
                     </div>
-                    <div class="bet-controls"> <!-- Einsatzsteuerung -->
+                    <div class="bet-controls">
                         <label>Einsatz:</label>
-                        <input type="number" id="betInput" value="100" min="0" step="50"> <!-- Einsatzfeld -->
+                        <input type="number" id="betInput" value="100" min="0" step="50">
                         <span>$</span>
                     </div>
-                    <small style="color:#aaa;">(Nur auf Spieler 1)</small> <!-- Hinweis -->
+                    <small style="color:#aaa;">(Nur auf Spieler 1)</small>
                 </div>
 
-                <!-- Scoreboard -->
                 <div class="hud-box score-box">
                     <h3>🏆 ERGEBNISSE</h3>
-                    <ul id="scoreList"> <!-- Liste der letzten 5 Rennen -->
-                        <li>Noch keine Rennen...</li> <!-- Platzhalter -->
+                    <ul id="scoreList">
+                        <li>Noch keine Rennen...</li>
                     </ul>
                 </div>
             </div>
 
-        </div> <!-- Ende Rennbahn -->
-    </div> <!-- Ende Container -->
+        </div> 
+    </div>
 
-    <script src="game.js"></script> <!-- Einbindung der Spiel-Logik -->
+    <script src="game.js"></script>
 </body>
 </html>
