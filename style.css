@@ -1,286 +1,208 @@
-/* 1. Grundlayout & Umgebung */
+/* 1. Grundlayout - Prototyp Stil */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Moderne, gut lesbare Schrift */
-    margin: 0;                                                   /* Entfernt Standardabstand */
-    padding: 20px;                                               /* Innenabstand für Layout */
-    text-align: center;                                          /* Zentriert Text */
-    color: #333;                                                 /* Standardtextfarbe */
-    overflow-x: hidden;                                          /* Verhindert horizontales Scrollen */
-    min-height: 100vh;                                           /* Mindestens volle Bildschirmhöhe */
-    display: flex;                                               /* Flexbox für vertikale Ausrichtung */
-    flex-direction: column;                                      /* Elemente untereinander */
-    align-items: center;                                         /* Zentriert horizontal */
-}
-
-.sky-background {
-    position: fixed; top: 0; left: 0; width: 100%; height: 60%;  /* Fester Himmel-Hintergrund */
-    background: linear-gradient(to bottom, #87CEEB 0%, #E0F7FA 100%); /* Himmel-Farbverlauf */
-    z-index: -2;                                                 /* Hinter allen Elementen */
-}
-
-body::after {
-    content: ''; position: fixed; bottom: 0; left: 0; width: 100%; height: 40%; /* Unterer Bereich */
-    background-color: #4C9A2A;                                   /* Grasfarbe */
-    z-index: -2;                                                 /* Hintergrund */
+    font-family: monospace, sans-serif; /* Technischere Schrift */
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    color: #000;
+    background-color: #fff; /* Reinweißer Hintergrund */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.95);                       /* Weiß mit leichter Transparenz */
-    padding: 25px;                                               /* Innenabstand */
-    border-radius: 12px;                                         /* Abgerundete Ecken */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);                     /* Starker Schatten */
-    max-width: 950px;                                            /* Maximalbreite */
-    width: 95%;                                                  /* Responsive Breite */
-    margin-top: 10px;                                            /* Abstand nach oben */
+    background: #fff;
+    padding: 20px;
+    border: 2px solid #000; /* Einfacher schwarzer Rahmen */
+    max-width: 950px;
+    width: 95%;
+    margin-top: 10px;
 }
 
 h1 { 
-    margin-top: 0;                                               /* Kein Abstand oben */
-    color: #2c3e50;                                              /* Dunkles Blau */
-    font-size: 2.2em;                                            /* Große Schrift */
-    text-transform: uppercase;                                   /* Großbuchstaben */
-    margin-bottom: 10px;                                         /* Abstand unten */
+    margin-top: 0;
+    color: #000;
+    text-transform: uppercase;
 }
 
-/* --- 2. Setup (Neu gestaltet) --- */
+hr {
+    border: 0;
+    border-top: 1px solid #000; /* Einfache schwarze Linie */
+}
+
+/* --- 2. Setup Boxen --- */
 #setup {
-    background: #f1f2f6;                                         /* Hellgrauer Hintergrund */
-    padding: 15px;                                               /* Innenabstand */
-    border-radius: 8px;                                          /* Abgerundete Ecken */
-    border: 1px solid #dcdde1;                                   /* Feiner Rahmen */
-    margin-bottom: 15px;                                         /* Abstand nach unten */
+    background: #eee; /* Helles Grau für Kontrast */
+    padding: 15px;
+    border: 1px solid #000;
+    margin-bottom: 15px;
 }
 
 .setup-row {
-    display: flex;                                               /* Flexbox */
-    justify-content: space-around;                               /* Gleichmäßig verteilt */
-    flex-wrap: wrap;                                             /* Zeilenumbruch bei kleinen Displays */
-    gap: 20px;                                                   /* Abstand zwischen Gruppen */
-    margin-bottom: 10px;                                         /* Abstand unten */
-}
-
-.setup-group label { 
-    font-weight: bold;                                           /* Fettschrift */
-    margin-right: 10px;                                          /* Abstand zum Element rechts */
-}
-
-#difficultySelect { 
-    padding: 5px;                                                /* Innenabstand */
-    border-radius: 4px;                                          /* Abgerundete Ecken */
-    border: 1px solid #ccc;                                      /* Standardrahmen */
-    font-size: 16px;                                             /* Lesbare Schriftgröße */
-}
-
-.keys-container {
-    display: flex;                                               /* Flexbox */
-    justify-content: center;                                     /* Zentriert */
-    gap: 30px;                                                   /* Abstand zwischen Tastenfeldern */
-    margin: 15px 0;                                              /* Vertikaler Abstand */
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 10px;
 }
 
 .key-box {
-    font-size: 20px;                                             /* Große Schrift */
-    text-align: center;                                          /* Zentrierter Text */
-    width: 50px;                                                 /* Breite */
-    padding: 5px;                                                /* Innenabstand */
-    border: 2px solid #bdc3c7;                                   /* Grauer Rahmen */
-    border-radius: 5px;                                          /* Abgerundet */
-    font-weight: bold;                                           /* Fett */
-    text-transform: uppercase;                                   /* Großbuchstaben */
-    cursor: pointer;                                             /* Klickbar */
-    background: white;                                           /* Weißer Hintergrund */
+    font-size: 20px;
+    text-align: center;
+    width: 40px;
+    padding: 5px;
+    border: 1px solid #000;
+    background: white;
+    cursor: pointer;
 }
 
 #startBtn {
-    padding: 10px 40px;                                          /* Größe */
-    font-size: 20px;                                             /* Große Schrift */
-    font-weight: bold;                                           /* Fett */
-    background-color: #27ae60;                                   /* Grün */
-    color: white;                                                /* Weißer Text */
-    border: none;                                                /* Kein Rahmen */
-    border-radius: 5px;                                          /* Abgerundet */
-    cursor: pointer;                                             /* Klickbar */
-    margin-top: 5px;                                             /* Abstand oben */
-    width: 100%; max-width: 300px;                               /* Responsiv */
+    padding: 10px 40px;
+    font-size: 18px;
+    background-color: #ddd; /* Grau statt Grün */
+    color: #000;
+    border: 1px solid #000;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 #startBtn:disabled { 
-    background-color: #bdc3c7;                                   /* Grau */
-    cursor: not-allowed;                                         /* Nicht klickbar */
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 #statusText { 
-    font-size: 24px;                                             /* Große Schrift */
-    color: #e74c3c;                                              /* Rot */
-    min-height: 30px;                                            /* Platzhalterhöhe */
-    margin-bottom: 15px;                                         /* Abstand unten */
-    font-weight: 800;                                            /* Sehr fett */
+    font-size: 24px;
+    color: #000;
+    min-height: 30px;
+    margin-bottom: 15px;
 }
 
-/* --- 3. Rennbahn --- */
+/* --- 3. Rennbahn (Vereinfacht) --- */
 .race-track {
-    position: relative;                                          /* Für absolute Elemente */
-    background-color: #56ab2f;                                   /* Grasgrün */
-    background-image: repeating-linear-gradient(90deg, 
-        transparent, transparent 50px, 
-        rgba(255,255,255,0.1) 50px, rgba(255,255,255,0.1) 100px); /* Linienmuster */
-    border: 8px solid #fff;                                      /* Weißer Rahmen */
-    border-radius: 6px;                                          /* Abgerundet */
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);                   /* Innerer Schatten */
-    overflow: hidden;                                            /* Pferde bleiben im Bereich */
-    padding-bottom: 0;                                           /* Platz für HUD */
+    position: relative;
+    background: #fff; /* Weißer Hintergrund */
+    border: 2px solid #000; /* Dicker schwarzer Rahmen */
+    overflow: hidden;
+    margin-top: 20px;
 }
 
-/* --- HUD (Wetten & Score) UNTEN --- */
-.hud-dashboard {
-    display: flex;                                               /* Flexbox */
-    justify-content: space-between;                              /* Links/Rechts verteilt */
-    padding: 15px;                                               /* Innenabstand */
-    background: rgba(0,0,0,0.1);                                 /* Dunkler Rasen */
-    border-top: 2px solid rgba(255,255,255,0.3);                 /* Trennlinie */
-    margin-top: 20px;                                            /* Abstand zur Bahn */
+/* Die neue, einfache Ziellinie */
+.finish-line {
+    position: absolute;
+    right: 80px; /* Gleiche Position wie vorher */
+    top: 0;
+    height: 100%;
+    width: 4px; /* Dünne Linie */
+    background-color: red; /* Rot zur Markierung */
+    z-index: 1;
 }
 
-.hud-box {
-    background: rgba(0, 0, 0, 0.7);                              /* Dunkle Box (GTA-Style) */
-    color: white;                                                /* Weißer Text */
-    padding: 15px;                                               /* Innenabstand */
-    border-radius: 5px;                                          /* Abgerundet */
-    width: 45%;                                                  /* Zwei Boxen nebeneinander */
-    text-align: left;                                            /* Text linksbündig */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);                       /* Schatten */
-}
-
-.hud-box h3 { 
-    margin: 0 0 10px 0;                                          /* Abstand unten */
-    color: #f1c40f;                                              /* Gold */
-    border-bottom: 1px solid #555;                               /* Trennlinie */
-    padding-bottom: 5px;                                         /* Abstand */
-    font-size: 16px;                                             /* Schriftgröße */
-}
-
-/* Wetten */
-.balance-display { 
-    font-size: 20px;                                             /* Große Schrift */
-    margin-bottom: 10px;                                         /* Abstand */
-    font-weight: bold;                                           /* Fett */
-    color: #2ecc71;                                              /* Grün */
-}
-
-.bet-controls input { 
-    width: 70px;                                                 /* Breite */
-    padding: 5px;                                                /* Innenabstand */
-    font-size: 16px;                                             /* Schriftgröße */
-    border-radius: 3px;                                          /* Abgerundet */
-    border: none;                                                /* Kein Rahmen */
-}
-
-/* Scoreboard */
-#scoreList { 
-    list-style: none;                                            /* Keine Punkte */
-    padding: 0; margin: 0;                                       /* Kein Abstand */
-    max-height: 80px;                                            /* Scrollbereich */
-    overflow-y: auto;                                            /* Vertikales Scrollen */
-    font-size: 14px;                                             /* Schriftgröße */
-}
-
-#scoreList li { 
-    padding: 3px 0;                                              /* Abstand */
-    border-bottom: 1px solid #444;                               /* Trennlinie */
-}
-
-.win-text { 
-    color: #2ecc71;                                              /* Grün */
-    font-weight: bold;                                           /* Fett */
-}
-
-.loss-text { 
-    color: #e74c3c;                                              /* Rot */
-}
-
-/* --- Bahnen & Pferde (Wie vorher) --- */
+/* --- Bahnen & Pferde --- */
 .track-row { 
-    display: flex;                                               /* Flexbox */
-    align-items: center;                                         /* Vertikal zentriert */
-    height: 70px;                                                /* Höhe der Bahn */
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5);           /* Trennlinie */
-    position: relative;                                          /* Für Pferde */
+    display: flex;
+    align-items: center;
+    height: 60px;
+    /* Einfache schwarze Trennlinie zwischen den Spuren */
+    border-bottom: 1px solid #000; 
+    position: relative;
 }
 
 .track-row:last-of-type { 
-    border-bottom: none;                                         /* Letzte Bahn ohne Linie */
+    border-bottom: none; 
 }
 
 .racer-info { 
-    width: 110px;                                                /* Breite */
-    background: rgba(0,0,0,0.25);                                /* Halbtransparent */
-    height: 100%;                                                /* Volle Höhe */
-    display: flex;                                               /* Flexbox */
-    align-items: center;                                         /* Zentriert */
-    justify-content: flex-end;                                   /* Text rechts */
-    padding-right: 15px;                                         /* Abstand rechts */
-    flex-shrink: 0;                                              /* Nicht schrumpfen */
-    border-right: 2px solid rgba(255,255,255,0.3);               /* Trennlinie */
-    z-index: 5;                                                  /* Über Pferden */
+    width: 100px;
+    background: #eee; /* Grau zur Abhebung */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    flex-shrink: 0;
+    /* Einfache schwarze Trennlinie zur Bahn */
+    border-right: 1px solid #000; 
+    z-index: 5;
 }
 
 .racer-name { 
-    color: white;                                                /* Weißer Text */
-    font-weight: bold;                                           /* Fett */
-    font-size: 14px;                                             /* Schriftgröße */
-    text-shadow: 1px 1px 3px black;                              /* Schatten für Lesbarkeit */
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .player-name { 
-    color: #f1c40f;                                              /* Gold */
-    font-size: 16px;                                             /* Größer */
+    /* color: #f1c40f; REMOVED Gold */
+    text-decoration: underline; /* Unterstrichen zur Markierung */
 }
 
 .lane { 
-    flex-grow: 1;                                                /* Füllt restlichen Platz */
-    height: 100%;                                                /* Volle Höhe */
-    position: relative;                                          /* Für Pferd-Positionierung */
+    flex-grow: 1;
+    height: 100%;
+    position: relative;
+    background: #fff;
 }
 
 .horse { 
-    position: absolute;                                          /* Frei bewegbar */
-    left: 0;                                                     /* Startposition */
-    bottom: 5px;                                                 /* Leicht angehoben */
-    height: 55px;                                                /* Größe */
-    width: auto;                                                 /* Proportionen beibehalten */
-    transition: left 0.1s linear;                                /* Sanfte Bewegung */
-    z-index: 10;                                                 /* Über der Bahn */
-    mix-blend-mode: multiply;                                    /* Farbverschmelzung */
-    filter: contrast(1.1);                                       /* Leicht verstärkt */
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    height: 50px; /* Etwas kleiner für die schmaleren Bahnen */
+    width: auto;
+    transition: left 0.1s linear;
+    z-index: 10;
+    /* Filter entfernt, damit GIFs normal aussehen */
 }
 
-.ai-horse { 
-    filter: contrast(1.1) hue-rotate(20deg);                     /* Leichte Farbänderung */
+/* --- HUD (Unten) --- */
+.hud-dashboard {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: #eee;
+    border-top: 2px solid #000;
 }
 
-/* Ziel */
-.finish-post { 
-    position: absolute;                                          /* Fixiert */
-    right: 80px;                                                 /* Abstand vom Rand */
-    top: 0;                                                      /* Oben */
-    height: 100%;                                                /* Volle Höhe */
-    width: 10px;                                                 /* Breite */
-    background: repeating-linear-gradient(0deg, 
-        #c0392b, #c0392b 10px, 
-        #ecf0f1 10px, #ecf0f1 20px);                             /* Rot-weißes Muster */
-    z-index: 1;                                                  /* Über Bahn */
+.hud-box {
+    background: #fff;
+    color: #000;
+    padding: 10px;
+    border: 1px solid #000;
+    width: 45%;
 }
 
-.finish-sign { 
-    position: absolute;                                          /* Fixiert */
-    top: 5px;                                                    /* Abstand oben */
-    left: 50%;                                                   /* Zentriert */
-    transform: translateX(-50%);                                 /* Exakte Zentrierung */
-    background: #c0392b;                                         /* Rot */
-    color: white;                                                /* Weißer Text */
-    padding: 3px 8px;                                            /* Innenabstand */
-    font-size: 10px;                                             /* Kleine Schrift */
-    font-weight: bold;                                           /* Fett */
-    border-radius: 4px;                                          /* Abgerundet */
-    border: 1px solid white;                                     /* Weißer Rahmen */
+.hud-box h3 { 
+    margin: 0 0 10px 0;
+    color: #000;
+    border-bottom: 1px solid #000;
+    font-size: 16px;
 }
+
+/* Wetten & Score */
+.balance-display { 
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.bet-controls input { 
+    width: 60px;
+    padding: 2px;
+    border: 1px solid #000;
+}
+
+#scoreList { 
+    list-style: none;
+    padding: 0; margin: 0;
+    font-size: 14px;
+}
+
+#scoreList li { 
+    padding: 2px 0;
+    border-bottom: 1px dotted #000;
+}
+
+.win-text { font-weight: bold; }
+.loss-text { color: #666; }
