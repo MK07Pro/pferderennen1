@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jahrmarkt Pferderennen Deluxe</title>
+    <title>Jahrmarkt Rennen</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,109 +12,55 @@
         <h1>🏇 Großes Derby 🏇</h1>
         
         <div id="setup">
-            <div class="setup-row">
-                <div class="setup-group">
-                    <label>Schwierigkeit:</label>
-                    <select id="difficultySelect">
-                        <option value="easy">Leicht 🟢</option>
-                        <option value="medium" selected>Mittel 🟡</option>
-                        <option value="hard">Schwer 🔴</option>
-                    </select>
-                </div>
-
-                <div class="setup-group">
-                    <label>Modus:</label>
-                    <div class="toggle-wrapper">
-                        <input type="checkbox" id="multiplayerToggle">
-                        <label for="multiplayerToggle" class="toggle-label">2 Spieler (Lokal)</label>
-                    </div>
-                </div>
+            <div class="setup-group">
+                <label>Schwierigkeit:</label>
+                <select id="difficultySelect">
+                    <option value="easy">Leicht</option>
+                    <option value="medium" selected>Mittel</option>
+                    <option value="hard">Schwer</option>
+                </select>
             </div>
 
-            <hr>
-
-            <div class="keys-container">
-                <div class="key-group">
-                    <p>Spieler 1 Taste:</p>
-                    <input type="text" id="keyInput1" maxlength="1" placeholder="_" readonly class="key-box">
-                </div>
-                
-                <div class="key-group" id="p2-setup" style="display: none;">
-                    <p>Spieler 2 Taste:</p>
-                    <input type="text" id="keyInput2" maxlength="1" placeholder="_" readonly class="key-box">
-                </div>
+            <div class="setup-group">
+                <input type="checkbox" id="multiplayerToggle">
+                <label for="multiplayerToggle">2 Spieler</label>
             </div>
 
-            <button id="startBtn" disabled>RENNEN STARTEN</button>
+            <div class="setup-group">
+                P1 Taste: <input type="text" id="keyInput1" maxlength="1" placeholder="_" readonly class="key-box">
+                <span id="p2-setup" style="display:none; margin-left:10px;">
+                    P2 Taste: <input type="text" id="keyInput2" maxlength="1" placeholder="_" readonly class="key-box">
+                </span>
+            </div>
+
+            <button id="startBtn" disabled>START</button>
         </div>
 
-        <h2 id="statusText">Konfiguriere das Spiel...</h2>
+        <h2 id="statusText">Bereit machen...</h2>
 
         <div class="race-track">
-            <div class="finish-post">
-                <div class="finish-sign">ZIEL</div>
-            </div>
-
-            <div class="track-row">
-                <div class="racer-info">
-                    <span class="racer-name player-name">👤 P1 (DU)</span>
-                </div>
-                <div class="lane">
-                    <img src="pferd.gif" class="horse" id="horse-p1" alt="Pferd P1">
-                </div>
-            </div>
-
-            <div class="track-row">
-                <div class="racer-info">
-                    <span class="racer-name" id="label-lane2">🤖 P2 (KI)</span>
-                </div>
-                <div class="lane">
-                    <img src="pferd.gif" class="horse ai-horse" id="horse-lane2" alt="Pferd Spur 2">
-                </div>
-            </div>
-
-            <div class="track-row">
-                <div class="racer-info">
-                    <span class="racer-name">🤖 P3 (KI)</span>
-                </div>
-                <div class="lane">
-                    <img src="pferd.gif" class="horse ai-horse" id="horse-ai2" alt="Pferd KI 2">
-                </div>
-            </div>
-
-            <div class="track-row">
-                <div class="racer-info">
-                    <span class="racer-name">🤖 P4 (KI)</span>
-                </div>
-                <div class="lane">
-                    <img src="pferd.gif" class="horse ai-horse" id="horse-ai3" alt="Pferd KI 3">
-                </div>
-            </div>
             
-            <div class="hud-dashboard">
-                
-                <div class="hud-box betting-box">
-                    <h3>💰 WETT-BÜRO</h3>
-                    <div class="balance-display">
-                        Guthaben: <span id="moneyDisplay">1000</span> $
-                    </div>
-                    <div class="bet-controls">
-                        <label>Einsatz:</label>
-                        <input type="number" id="betInput" value="100" min="0" step="50">
-                        <span>$</span>
-                    </div>
-                    <small style="color:#aaa;">(Nur auf Spieler 1)</small>
-                </div>
+            <img src="pferd.gif" class="horse" id="horse-p1" alt="Pferd P1">
 
-                <div class="hud-box score-box">
-                    <h3>🏆 ERGEBNISSE</h3>
-                    <ul id="scoreList">
-                        <li>Noch keine Rennen...</li>
-                    </ul>
-                </div>
-            </div>
+            <img src="pferd.gif" class="horse" id="horse-lane2" alt="Pferd Spur 2">
+
+            <img src="pferd.gif" class="horse" id="horse-ai2" alt="Pferd KI 2">
+
+            <img src="pferd.gif" class="horse" id="horse-ai3" alt="Pferd KI 3">
 
         </div> 
+
+        <div class="hud-dashboard">
+            <div class="hud-box">
+                <h3>Wetteinsatz</h3>
+                Guthaben: <span id="moneyDisplay">1000</span> $<br>
+                Einsatz: <input type="number" id="betInput" value="100" style="width:60px;"> $
+            </div>
+            <div class="hud-box">
+                <h3>Letzte Rennen</h3>
+                <ul id="scoreList"><li>Noch keine Daten</li></ul>
+            </div>
+        </div>
     </div>
 
     <script src="game.js"></script>
