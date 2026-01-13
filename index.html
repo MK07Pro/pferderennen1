@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de"> <!-- Dokumentensprache: Deutsch -->
+<html lang="de">
 <head>
     <meta charset="UTF-8"> <!-- UTF‑8 Zeichensatz -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsives Layout -->
@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <div class="sky-background"></div> <!-- Hintergrundgrafik (Himmel) -->
+    <div class="sky-background"></div>
 
     <div class="container"> <!-- Hauptcontainer für das gesamte Layout -->
         <h1>🏇 Großes Derby 🏇</h1> <!-- Titel des Spiels -->
@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <hr> <!-- Trennlinie -->
+            <hr>
 
             <div class="keys-container"> <!-- Bereich für Tastenwahl -->
                 <div class="key-group"> <!-- Taste für Spieler 1 -->
@@ -66,7 +66,7 @@
                 <div class="lane"> <!-- Bahn -->
                     <img src="pferd.gif" class="horse" id="horse-p1"
                          onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐎</text></svg>'">
-                    <!-- Fallback: Wenn pferd.gif fehlt, wird ein Emoji-Pferd angezeigt -->
+                    
                 </div>
             </div>
 
@@ -78,7 +78,6 @@
                 <div class="lane">
                     <img src="pferd.gif" class="horse ai-horse" id="horse-lane2"
                          onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦓</text></svg>'">
-                    <!-- Fallback: Zebra -->
                 </div>
             </div>
 
@@ -90,7 +89,6 @@
                 <div class="lane">
                     <img src="pferd.gif" class="horse ai-horse" id="horse-ai2"
                          onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐂</text></svg>'">
-                    <!-- Fallback: Stier -->
                 </div>
             </div>
 
@@ -102,7 +100,6 @@
                 <div class="lane">
                     <img src="pferd.gif" class="horse ai-horse" id="horse-ai3"
                          onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐪</text></svg>'">
-                    <!-- Fallback: Kamel -->
                 </div>
             </div>
             
@@ -137,3 +134,4 @@
     <script src="game.js"></script> <!-- Einbindung der Spiel-Logik -->
 </body>
 </html>
+
