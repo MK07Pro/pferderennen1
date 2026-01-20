@@ -57,7 +57,7 @@ body {
        Hier nehmen wir eine feste Höhe, die auf den meisten Screens gut aussieht. */
     height: 400px; 
     
-    background-image: url('background.png');
+    background-image: url('background.jpg');
     background-size: 100% 100%; /* Bild wird gestreckt, damit Start/Ziel immer sichtbar sind */
     background-position: center;
     background-repeat: no-repeat;
@@ -127,3 +127,4 @@ body {
 ul { list-style: none; padding: 0; }
 .win-text { color: green; font-weight: bold; }
 .loss-text { color: red; }
+
