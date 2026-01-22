@@ -3,64 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jahrmarkt Rennen</title>
+    <title>Jahrmarkt Rennen - Panorama Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div class="sky-background"></div>
 
     <div class="container">
         <h1>🏇 Großes Derby 🏇</h1>
         
         <div id="setup">
-            <div class="setup-group">
-                <label>Schwierigkeit:</label>
-                <select id="difficultySelect">
-                    <option value="easy">Leicht</option>
-                    <option value="medium" selected>Mittel</option>
-                    <option value="hard">Schwer</option>
-                </select>
+            <div class="setup-row">
+                <div class="setup-group">
+                    <label>Schwierigkeit:</label>
+                    <select id="difficultySelect">
+                        <option value="easy">Leicht 🟢</option>
+                        <option value="medium" selected>Mittel 🟡</option>
+                        <option value="hard">Schwer 🔴</option>
+                    </select>
+                </div>
+
+                <div class="setup-group">
+                    <label>Modus:</label>
+                    <input type="checkbox" id="multiplayerToggle">
+                    <label for="multiplayerToggle">2 Spieler</label>
+                </div>
             </div>
 
-            <div class="setup-group">
-                <input type="checkbox" id="multiplayerToggle">
-                <label for="multiplayerToggle">2 Spieler</label>
-            </div>
+            <hr>
 
-            <div class="setup-group">
-                P1 Taste: <input type="text" id="keyInput1" maxlength="1" placeholder="_" readonly class="key-box">
-                <span id="p2-setup" style="display:none; margin-left:10px;">
+            <div class="keys-container">
+                <div class="key-group">
+                    P1 Taste: <input type="text" id="keyInput1" maxlength="1" placeholder="_" readonly class="key-box">
+                </div>
+                <div class="key-group" id="p2-setup" style="display: none;">
                     P2 Taste: <input type="text" id="keyInput2" maxlength="1" placeholder="_" readonly class="key-box">
-                </span>
+                </div>
             </div>
 
-            <button id="startBtn" disabled>START</button>
+            <button id="startBtn" disabled>RENNEN STARTEN</button>
         </div>
 
-        <h2 id="statusText">Bereit machen...</h2>
+        <h2 id="statusText">Konfiguriere das Spiel...</h2>
 
         <div class="race-track">
             
-            <img src="pferd.gif" class="horse" id="horse-p1" alt="Pferd P1">
+            <img src="pferd.gif" class="horse" id="horse-p1" 
+                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐎</text></svg>'">
 
-            <img src="pferd.gif" class="horse" id="horse-lane2" alt="Pferd Spur 2">
+            <img src="pferd.gif" class="horse" id="horse-lane2" 
+                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦓</text></svg>'">
 
-            <img src="pferd.gif" class="horse" id="horse-ai2" alt="Pferd KI 2">
+            <img src="pferd.gif" class="horse" id="horse-ai2" 
+                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐂</text></svg>'">
 
-            <img src="pferd.gif" class="horse" id="horse-ai3" alt="Pferd KI 3">
+            <img src="pferd.gif" class="horse" id="horse-ai3" 
+                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐪</text></svg>'">
 
         </div> 
 
         <div class="hud-dashboard">
-            <div class="hud-box">
-                <h3>Wetteinsatz</h3>
-                Guthaben: <span id="moneyDisplay">1000</span> $<br>
-                Einsatz: <input type="number" id="betInput" value="100" style="width:60px;"> $
+            <div class="hud-box betting-box">
+                <h3>💰 WETT-BÜRO</h3>
+                <div class="balance-display">Guthaben: <span id="moneyDisplay">1000</span> $</div>
+                <div class="bet-controls">
+                    Einsatz: <input type="number" id="betInput" value="100" min="0" step="50"> $
+                </div>
             </div>
-            <div class="hud-box">
-                <h3>Letzte Rennen</h3>
-                <ul id="scoreList"><li>Noch keine Daten</li></ul>
+
+            <div class="hud-box score-box">
+                <h3>🏆 ERGEBNISSE</h3>
+                <ul id="scoreList"><li>Noch keine Rennen...</li></ul>
             </div>
         </div>
+
     </div>
 
     <script src="game.js"></script>
