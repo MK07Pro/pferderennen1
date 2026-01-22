@@ -52,7 +52,7 @@ h1 { margin-top: 0; color: #2c3e50; text-transform: uppercase; }
 
 /* SPUR 4 (Ganz Hinten / Oben) */
 #horse-ai3 {
-    top: 55%;      /* Am weitesten oben */
+    top: 90%;      /* Am weitesten oben */
     height: 11%;   /* Am kleinsten */
     z-index: 1;    /* Ganz hinten */
 }
@@ -88,3 +88,4 @@ h1 { margin-top: 0; color: #2c3e50; text-transform: uppercase; }
 #scoreList li { padding: 3px 0; border-bottom: 1px solid #444; }
 .win-text { color: #2ecc71; font-weight: bold; }
 .loss-text { color: #e74c3c; }
+
