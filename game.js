@@ -14,7 +14,7 @@ const horseLane2 = document.getElementById('horse-lane2'); // P2 oder KI 1 (Mitt
 // KI Array enthält wieder beide hinteren Pferde
 const aiHorses = [
     document.getElementById('horse-ai2'),                  // KI 2 (Mitte hinten)
-    document.getElementById('horse-ai3')                   // KI 3 (Ganz hinten) - WIEDER DA!
+    document.getElementById('horse-ai3')                   // KI 3 (Ganz hinten)
 ];
 
 // Wett & Score
