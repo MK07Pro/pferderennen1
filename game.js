@@ -275,10 +275,8 @@ document.addEventListener('keydown', (e) => {
         if (isDoped) {
             moveAmount = 1.3; // 30% schneller
             
-            // RISIKO: Wenn Fortschritt > 80%, Chance auf Busted
-            if (positions.p1 > 90) {
-                // 5% Chance pro Tastendruck erwischt zu werden
-                if (Math.random() < 0.035) {
+            if (positions.p1 > 80) {
+                if (Math.random() < 0.045) {
                     triggerBusted();
                     return;
                 }
@@ -433,5 +431,6 @@ function resetTournament() {
     tournamentRound = 1;
     updateModeDisplay();
 }
+
 
 
