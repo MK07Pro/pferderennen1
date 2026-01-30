@@ -63,14 +63,14 @@ const shopItems = [
     { id: 'bronze', name: 'Bronze Pferd', price: 1000, img: 'pferd-bronze.png' },
     { id: 'silber', name: 'Silber Pferd', price: 1500, img: 'pferd-silber.png' },
     { id: 'gold', name: 'Gold Pferd', price: 2000, img: 'pferd-gold.png' },
-    { id: 'elefant', name: 'Elefant', price: 2500, img: 'pferd-elefant.png' },
-    { id: 'loewe', name: 'Löwe', price: 3000, img: 'pferd-loewe.png' },
-    { id: 'einhorn', name: 'Einhorn', price: 5000, img: 'pferd-einhorn.png' }
+    { id: 'elefant', name: 'Elefant', price: 500, img: 'pferd-elefant.png' },
+    { id: 'loewe', name: 'Löwe', price: 10000, img: 'pferd-loewe.png' },
+    { id: 'einhorn', name: 'Einhorn', price: 50000, img: 'pferd-einhorn.png' }
 ];
 let ownedSkins = []; // IDs der gekauften Skins
 let currentSkin = 'pferd-gelb.png'; // Standard Skin
 
-const BASE_SPEEDS = { easy: 0.25, medium: 0.45, hard: 0.65 };
+const BASE_SPEEDS = { easy: 0.25, medium: 0.4, hard: 0.55 };
 
 // --- SHOP LOGIK ---
 shopBtn.addEventListener('click', () => {
@@ -276,9 +276,9 @@ document.addEventListener('keydown', (e) => {
             moveAmount = 1.3; // 30% schneller
             
             // RISIKO: Wenn Fortschritt > 80%, Chance auf Busted
-            if (positions.p1 > 80) {
+            if (positions.p1 > 90) {
                 // 5% Chance pro Tastendruck erwischt zu werden
-                if (Math.random() < 0.05) {
+                if (Math.random() < 0.035) {
                     triggerBusted();
                     return;
                 }
@@ -433,4 +433,5 @@ function resetTournament() {
     tournamentRound = 1;
     updateModeDisplay();
 }
+
 
