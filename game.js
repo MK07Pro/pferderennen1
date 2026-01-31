@@ -65,7 +65,7 @@ const shopItems = [
     { id: 'gold', name: 'Gold Pferd', price: 2000, img: 'pferd-gold.png' },
     { id: 'elefant', name: 'Elefant', price: 500, img: 'pferd-elefant.png' },
     { id: 'loewe', name: 'Löwe', price: 10000, img: 'pferd-loewe.png' },
-    { id: 'einhorn-bunt', name: 'buntes Einhorn', price: 50000, img: 'pferd_einhorn_weiß.png'}
+    { id: 'einhorn-bunt', name: 'buntes Einhorn', price: 50000, img: 'pferd_einhorn_weiß.png'},
     { id: 'einhorn', name: 'Einhorn', price: 100000, img: 'pferd-einhorn.png' }
 ];
 let ownedSkins = []; // IDs der gekauften Skins
@@ -432,6 +432,7 @@ function resetTournament() {
     tournamentRound = 1;
     updateModeDisplay();
 }
+
 
 
 
