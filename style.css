@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('backbackground.jpeg');
+    background-image: url('backbackground.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -307,5 +307,6 @@ button:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #333; }
 
 .win-text { color: #2ecc71; font-weight: bold; text-shadow: 0 0 2px #000; }
 .loss-text { color: #e74c3c; text-shadow: 0 0 2px #000; }
+
 
 
